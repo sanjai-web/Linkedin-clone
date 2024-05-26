@@ -1,9 +1,11 @@
 import React from 'react'
-
+import Navbar from "./navbar"
+import "../styles/home.css"
 function home() {
   return (
     <>
-    <div>
+<Navbar/>
+    <div className='main'>
       <h1>Sanjai</h1>
     </div></>
   )

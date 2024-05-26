@@ -3,6 +3,7 @@
     padding: 0px;
     margin: 0px;
   }
+
   
   .Topnav {
     padding: 12px 25px;
@@ -12,7 +13,7 @@
     top: 0; 
     left: 0; 
     height: 27px;
-    background-color: #d9d9d9;
+    background-color: #ffffff;
     border-bottom: 1px solid #5059783e;
     width: 97%; }
   .logo{
@@ -72,7 +73,7 @@
     font-size: 28px;
     position: relative;
     left: 50%;
-    
+    text-decoration: none;
     color: #00000099;
   }
   .homei:hover{
@@ -112,3 +113,7 @@
   .acc:hover{
     color: black;
   }
+  .homei a, .message a, .noti a, .acc a {
+    color: inherit;  /* Inherit color from parent span */
+    text-decoration: none;  /* Remove underline from links */
+}
