@@ -1,4 +1,142 @@
-body{
-    background-color: #f4f2ee;
-}
+* Global styles */
 
+* {
+    box-sizing: border-box;
+    
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f2ee;
+  }
+  
+  /* Post container styles */
+  .textarea1{
+    max-width: 525px;
+    margin-left: 25px;
+    font-size: large;
+    margin-top: 25px;
+    border: #33333365 solid 1px;
+  }
+  label,input{
+    margin-left: 25px;
+
+  }
+  .post-container {
+    max-width: 600px;
+    margin: 100px auto;
+   
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .container1{
+    position: absolute;
+    top: 60px;
+    left: 23%;
+    background-color: #fff;
+    border-radius: 10px;
+    max-width: 600px;
+    border: 1px solid #33333346;
+    width: 800px;
+    padding-bottom: 25px;
+  }
+
+  .container2{
+   
+    background-color: #fff;
+    border-radius: 10px;
+    max-width: 600px;
+    border: 1px solid #33333346;
+    width: 800px;
+  }
+  .post-container h3 {
+    margin-top: 0;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Form styles */
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button[type="button"] {
+    background-color: #337ab7;
+    color: #fff;
+    padding: 10px 20px;
+    margin-left: 25px;
+    border: none;
+    
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #23527c;
+  }
+  
+  /* Post list styles */
+  
+  .post-list {
+    margin-top: 20px;
+  }
+  
+  .post-list > div {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .post-list > div:last-child {
+    border-bottom: none;
+  }
+  
+  .post-list strong {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .post-list button {
+    margin-right: 10px;
+    background-color: #337ab7;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .post-list button:hover {
+    background-color: #23527c;
+  }
+  
+  /* Search input styles */
+  
+  .search-input {
+    max-width: 525px;
+    margin-left: 25px;
+    font-size: large;
+   
+    border: #33333365 solid 1px;
+    padding-top:10px;
+    padding-bottom: 10px;
+  }

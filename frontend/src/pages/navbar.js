@@ -14,22 +14,22 @@ function Navbar() {
       <div className='icons'>
         <span className='homei'>
           <NavLink to="/">
-            <FaHome />
+            <FaHome fontSize="28px" />
           </NavLink>
         </span>
         <span className='message'>
           <NavLink to="/message">
-            <AiOutlineMessage />
+            <AiOutlineMessage fontSize="28px" /> 
           </NavLink>
         </span>
         <span className='noti'>
           <NavLink to="/notification">
-            <FaBell />
+            <FaBell fontSize="28px" />
           </NavLink>
         </span>
         <span className='acc'>
           <NavLink to="/account">
-            <MdAccountBox />
+            <MdAccountBox fontSize="28px" />
           </NavLink>
         </span>
       </div>
