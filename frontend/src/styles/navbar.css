@@ -1,119 +1,115 @@
-* { 
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    padding: 0px;
-    margin: 0px;
-  }
-
-  
-  .Topnav {
-    padding: 12px 25px;
-    min-width: 200px;
-    max-width: 100%;
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    height: 27px;
-    background-color: #ffffff;
-    border-bottom: 1px solid #5059783e;
-    width: 97%; }
-  .logo{
-    position: absolute;
-    top:10px;
-    left: 20%;
-  }
-  
-  h1 {
-    color: #505978;
-    margin-left: 1vw;
-  }
-  .profile{
-      height: 40px;
-      width: 40px;
-      position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px; 
-    margin-right: 50px;
-    margin-top: 15px;
-     
-  }
-  .add{
-      height: 40px;
-      width: 40px;
-      position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px; 
-    margin-right: 110px;
-    margin-top: 15px;
-  
-  }
-  
-  .pro {
-    color:#4EAA65;
-  }
-  
-
-
-  .input {
-   
-    width: 15em;
-    height: 2.2em;
-    padding-left: 0.8em;
-   position: absolute;
-   top: 12px;
-   left: 25%;
-    border: none;
-    background-color: #edf3f8;
-    border-radius: 3px;
-  
-  }
-
-  .homei{
-    font-size: 28px;
-    position: relative;
-    left: 50%;
-    text-decoration: none;
-    color: #00000099;
-  }
-  .homei:hover{
-    color: black;
-  }
-
-
-.message{
-  font-size: 200px;
-    position: relative;
-    left: 53%;
-    
-    color: #00000099;
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0px;
+  margin: 0px;
 }
-.message:hover{
+
+.Topnav {
+  padding: 12px 25px;
+  min-width: 200px;
+  max-width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 27px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #5059783e;
+  width: 97%;
+}
+.logo {
+  position: absolute;
+  top: 10px;
+  left: 20%;
+}
+
+h1 {
+  color: #505978;
+  margin-left: 1vw;
+}
+.profile {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  margin-right: 50px;
+  margin-top: 15px;
+}
+.add {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  margin-right: 110px;
+  margin-top: 15px;
+}
+
+.pro {
+  color: #4eaa65;
+}
+
+.input {
+  width: 15em;
+  height: 2.2em;
+  padding-left: 0.8em;
+  position: absolute;
+  top: 12px;
+  left: 25%;
+  border: none;
+  background-color: #edf3f8;
+  border-radius: 3px;
+}
+
+.homei {
+  font-size: 28px;
+  position: relative;
+  left: 50%;
+  text-decoration: none;
+  color: #00000099;
+}
+.homei:hover {
   color: black;
 }
 
-  .noti{
-    font-size: 28px;
-    position: relative;
-    left: 56%;
-    
-    color: #00000099;
-  }
-  .noti:hover{
-    color: black;
-  }
+.message {
+  font-size: 200px;
+  position: relative;
+  left: 53%;
 
-  .acc{
-    font-size: 28px;
-    position: relative;
-    left: 59%;
-    
-    color: #00000099;
-  }
-  .acc:hover{
-    color: black;
-  }
-  .homei a, .message a, .noti a, .acc a {
-    color: inherit;  /* Inherit color from parent span */
-    text-decoration: none;  /* Remove underline from links */
+  color: #00000099;
+}
+.message:hover {
+  color: black;
+}
+
+.noti {
+  font-size: 28px;
+  position: relative;
+  left: 56%;
+
+  color: #00000099;
+}
+.noti:hover {
+  color: black;
+}
+
+.acc {
+  font-size: 28px;
+  position: relative;
+  left: 59%;
+
+  color: #00000099;
+}
+.acc:hover {
+  color: black;
+}
+.homei a,
+.message a,
+.noti a,
+.acc a {
+  color: inherit; /* Inherit color from parent span */
+  text-decoration: none; /* Remove underline from links */
 }

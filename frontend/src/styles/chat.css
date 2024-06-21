@@ -1,0 +1,37 @@
+/* src/App.css */
+.chat-container {
+    display: flex;
+    margin-top: 50px;
+  }
+  
+  .user-list {
+    width: 200px;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .chat-box {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .messages {
+    height: 300px;
+    overflow-y: scroll;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .send-message {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .send-message input {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .send-message button {
+    padding: 10px;
+  }
+  

@@ -9,7 +9,7 @@ import { MdAccountBox } from "react-icons/md";
 function Navbar() {  
   return (
     <div className="Topnav">
-      <img src={logo} alt="Company Logo" className='logo' style={{ maxWidth: '35px', maxHeight: '35px' }} />
+      {/* <img src={logo} alt="Company Logo" className='logo' style={{ maxWidth: '35px', maxHeight: '35px' }} />
       <input className="input" placeholder="Search" />
       <div className='icons'>
         <span className='homei'>
@@ -18,7 +18,7 @@ function Navbar() {
           </NavLink>
         </span>
         <span className='message'>
-          <NavLink to="/message">
+          <NavLink to="/chat">
             <AiOutlineMessage fontSize="28px" /> 
           </NavLink>
         </span>
@@ -32,7 +32,7 @@ function Navbar() {
             <MdAccountBox fontSize="28px" />
           </NavLink>
         </span>
-      </div>
+      </div> */}
     </div>
   );
 }

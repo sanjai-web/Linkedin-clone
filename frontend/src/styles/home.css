@@ -1,4 +1,4 @@
-* Global styles */
+/* 
 
 * {
     box-sizing: border-box;
@@ -11,7 +11,7 @@
     background-color: #f4f2ee;
   }
   
-  /* Post container styles */
+ 
   .textarea1{
     max-width: 525px;
     margin-left: 25px;
@@ -58,7 +58,7 @@
     color: #333;
   }
   
-  /* Form styles */
+
   
   form {
     margin-bottom: 20px;
@@ -94,7 +94,7 @@
     background-color: #23527c;
   }
   
-  /* Post list styles */
+ 
   
   .post-list {
     margin-top: 20px;
@@ -129,7 +129,7 @@
     background-color: #23527c;
   }
   
-  /* Search input styles */
+ 
   
   .search-input {
     max-width: 525px;
@@ -139,4 +139,4 @@
     border: #33333365 solid 1px;
     padding-top:10px;
     padding-bottom: 10px;
-  }
+  } */
