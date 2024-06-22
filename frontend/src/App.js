@@ -5,7 +5,8 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Chat from "./pages/chat";
 import Signup from "./pages/signup";
-import Dash from "./pages/dashbord"
+import Dash from "./pages/dashbord";
+
 
 function App() {
   return (
@@ -13,11 +14,12 @@ function App() {
       <div>
         <Navbar />
         <Routes>
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          
           <Route path="/home" element={<Home />} />
           <Route path="/dashbord" element={<Dash />} />
           <Route path="/chat" element={<Chat />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={<Login />} />
         </Routes>
       </div>
     </BrowserRouter>

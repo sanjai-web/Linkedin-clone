@@ -9,11 +9,11 @@ import { MdAccountBox } from "react-icons/md";
 function Navbar() {  
   return (
     <div className="Topnav">
-      {/* <img src={logo} alt="Company Logo" className='logo' style={{ maxWidth: '35px', maxHeight: '35px' }} />
-      <input className="input" placeholder="Search" />
-      <div className='icons'>
-        <span className='homei'>
-          <NavLink to="/">
+      <img src={logo} alt="Company Logo" className='logo' style={{ maxWidth: '35px', maxHeight: '35px' }} />
+      <input className="input1" placeholder="Search" />
+      <div className='icons1'>
+        <span className="homei" >
+          <NavLink to="/home" >
             <FaHome fontSize="28px" />
           </NavLink>
         </span>
@@ -28,11 +28,11 @@ function Navbar() {
           </NavLink>
         </span>
         <span className='acc'>
-          <NavLink to="/account">
+          <NavLink to="/dashbord">
             <MdAccountBox fontSize="28px" />
           </NavLink>
         </span>
-      </div> */}
+      </div>
     </div>
   );
 }

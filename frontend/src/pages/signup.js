@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "../styles/navbar.css";
+import "../styles/signup.css";
+import logo from "../images/logo.png";
+
 import { NavLink } from "react-router-dom";
 export default function Signup() {
   const [firstName, setFirstName] = useState('');
@@ -19,7 +23,7 @@ export default function Signup() {
         role
       });
       alert(response.data.message);
-      window.location.href = '/login'; // Redirect to login page after successful signup
+      window.location.href = '/'; // Redirect to login page after successful signup
     } catch (error) {
       console.error('Error signing up:', error);
       alert('Failed to sign up');
@@ -27,36 +31,46 @@ export default function Signup() {
   };
 
   return (
-    <div style={{ marginTop: 500 }}>
-      <h3>Signup</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>First Name</label>
+    <div >
+       <div className="Topnav">
+     <img src={logo} alt="Company Logo" className='logo' style={{ maxWidth: '35px', maxHeight: '35px', left: '40%' } } />
+  <input className="input1" placeholder="Search" style={{ left: '45%' }} />
+  
+  <form className="form6" onSubmit={handleSubmit}>
+      
+   <h3 className="title6" >Signup</h3>
+   <p class="message6">Signup now and get full access to our app. </p>
+     <div className="flex6">
+          <label> <span>First Name </span></label>
           <input
+          className="input-container"
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           /><br />
         </div>
         <div>
-          <label>Last Name</label>
+          <label> <span>Last Name</span></label>
           <input
+          className="input-container"
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           /><br />
         </div>
         <div>
-          <label>Email</label>
+          <label> <span>Email</span></label>
           <input
+          className="input-container"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           /><br />
         </div>
         <div>
-          <label>Password</label>
+          <label> <span>Password</span></label>
           <input
+          className="input-container"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -64,24 +78,38 @@ export default function Signup() {
         </div>
         <div>
           <label>Role</label>
+          <label className="radio-button">
           <input
             type="radio"
             value="teacher"
             checked={role === 'teacher'}
             onChange={() => setRole('teacher')}
-          /> Teacher
+          /> 
+           <span className="radio"></span>
+          
+          Teacher
+          </label>
+
+          <label className="radio-button">
           <input
             type="radio"
             value="student"
             checked={role === 'student'}
             onChange={() => setRole('student')}
-          /> Student
+            
+          /> 
+          <span className="radio"></span>
+          Student
+
+</label>
+
         </div>
-        <button type="submit">Signup</button>
+        <button className="submit6" type="submit">Signup</button>
+        <p className="signin">Already have an acount ? <NavLink to="/">
+            Signin
+          </NavLink> </p>
       </form>
-      <NavLink to="/login">
-            <h4 >Already have account,Login</h4>
-          </NavLink>
-    </div>
+      
+    </div></div>
   );
 }

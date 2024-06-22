@@ -1,11 +1,12 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
-const fs = require('fs');
 const cors = require('cors');
+const User = require('./models/User'); // Adjust this path based on your folder structure
+const Post = require('./models/Post');
+const Message = require('./models/Message'); // Ensure this path is correct
 
 const app = express();
 const PORT = 3001;
@@ -14,7 +15,8 @@ app.use(express.json());
 app.use(cors());
 
 // Serve static files from the 'uploads' directory
-app.use('/uploads', express.static('E:/StartUp/Website-clone/Backend/uploads'));
+const uploadDir = 'E:/StartUp/Website-clone/Backend/uploads';
+app.use('/uploads', express.static(uploadDir));
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/myapp', {
@@ -22,42 +24,15 @@ mongoose.connect('mongodb://localhost:27017/myapp', {
   useUnifiedTopology: true,
 });
 const db = mongoose.connection;
-db.once('open', () => console.log('Connected to MongoDB'));
-
-// Define mongoose schema and model
-const userSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  email: String,
-  password: String,
-  role: String,
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+  console.log('Connected to MongoDB');
 });
-const User = mongoose.model('User', userSchema);
-
-const postSchema = new mongoose.Schema({
-  description: String,
-  mediaUrl: String,
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Reference to User model
-});
-const Post = mongoose.model('Post', postSchema);
-
-// Define mongoose schema and model for messages
-const messageSchema = new mongoose.Schema({
-  senderId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  receiverId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  message: String,
-  timestamp: { type: Date, default: Date.now },
-});
-const Message = mongoose.model('Message', messageSchema);
 
 // Setup multer for file uploads
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const dir = 'E:/StartUp/Website-clone/Backend/uploads';
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir);
-    }
-    cb(null, dir);
+    cb(null, uploadDir);
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname);
@@ -65,17 +40,31 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// Middleware to verify token
+// Middleware to authenticate token
 const verifyToken = (req, res, next) => {
-  const bearerHeader = req.headers['authorization'];
-  if (typeof bearerHeader !== 'undefined') {
-    const bearerToken = bearerHeader.split(' ')[1];
-    req.token = bearerToken;
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  if (token == null) return res.sendStatus(401);
+
+  jwt.verify(token, 'secretkey', (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.token = token; // Assign the token to the request object for use in routes
+    req.user = user;   // Assign decoded user information to request object
     next();
-  } else {
-    res.sendStatus(403);
-  }
+  });
 };
+
+// Get current user
+app.get('/user', verifyToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.userId).select('-password');
+    if (!user) throw new Error('User not found');
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error fetching current user:', error);
+    res.status(500).json({ error: 'Failed to fetch current user' });
+  }
+});
 
 // Post endpoints
 // Create a post
@@ -84,11 +73,10 @@ app.post('/posts', verifyToken, upload.single('media'), async (req, res) => {
   const mediaUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
   try {
-    const decoded = jwt.verify(req.token, 'secretkey');
     const newPost = new Post({
       description,
       mediaUrl,
-      user: decoded.userId,
+      user: req.user.userId, // Assuming user ID is directly available in decoded token
     });
     await newPost.save();
     res.status(201).json({ message: 'Post created successfully' });
@@ -207,28 +195,12 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Fetch user details
-app.get('/user', verifyToken, async (req, res) => {
-  try {
-    const decoded = jwt.verify(req.token, 'secretkey');
-    const user = await User.findById(decoded.userId).select('-password');
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-    res.json(user);
-  } catch (error) {
-    console.error('Error fetching user:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
-});
-
 // Update user password
 app.put('/user/password', verifyToken, async (req, res) => {
   const { currentPassword, newPassword } = req.body;
 
   try {
-    const decoded = jwt.verify(req.token, 'secretkey');
-    const user = await User.findById(decoded.userId);
+    const user = await User.findById(req.user.userId);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -254,9 +226,8 @@ app.post('/messages', verifyToken, async (req, res) => {
   const { receiverId, message } = req.body;
 
   try {
-    const decoded = jwt.verify(req.token, 'secretkey');
     const newMessage = new Message({
-      senderId: decoded.userId,
+      senderId: req.user.userId,
       receiverId,
       message,
     });
@@ -268,17 +239,31 @@ app.post('/messages', verifyToken, async (req, res) => {
   }
 });
 
-// Fetch user messages
-app.get('/messages', verifyToken, async (req, res) => {
-  try {
-    const decoded = jwt.verify(req.token, 'secretkey');
-    const messages = await Message.find({
-      $or: [{ senderId: decoded.userId }, { receiverId: decoded.userId }],
-    }).populate('senderId receiverId', 'firstName lastName email');
+// Fetch messages for a user
+app.get('/messages/:userId', verifyToken, async (req, res) => {
+  const { userId } = req.params;
 
+  try {
+    const messages = await Message.find({
+      $or: [
+        { senderId: req.user.userId, receiverId: userId },
+        { senderId: userId, receiverId: req.user.userId },
+      ],
+    }).sort({ timestamp: 1 });
     res.json(messages);
   } catch (error) {
     console.error('Error fetching messages:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+// Fetch all users
+app.get('/users', verifyToken, async (req, res) => {
+  try {
+    const users = await User.find().select('-password');
+    res.json(users);
+  } catch (error) {
+    console.error('Error fetching users:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });

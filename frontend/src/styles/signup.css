@@ -1,0 +1,125 @@
+.form6 {
+    display: flex;
+    flex-direction: column;
+    margin: 10%;
+    gap: 10px;
+    margin-left: 37%;
+    max-width: 350px;
+    background-color: #fff;
+    padding: 20px;
+    padding-right: 30px;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+    position: relative;
+  }
+
+  body{
+    background-color: #f1ece5;
+  }
+  
+  .title6 {
+    font-size: 28px;
+    color: #0a6fd4;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+  }
+  
+  .title6::before,.title6::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: #0a6fd4;
+  }
+  
+  .title6::before {
+    width: 18px;
+    height: 18px;
+    background-color: #0a6fd4;
+  }
+  
+  .title6::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+  }
+  
+  .message6, .signin {
+    color: #585757d2;
+    font-size: 14px;
+  }
+  
+  .signin {
+    text-align: center;
+  }
+  
+  .signin a {
+    color: #0a6fd4;
+  }
+  
+  .signin a:hover {
+    text-decoration: underline #0a6fd4;
+  }
+  
+
+  .input-container {
+    position: relative;
+    outline: none;
+    border: 1px solid #e5e7eb;
+    margin: 8px 0;
+  }
+  
+
+  
+  .input-container{
+    background-color: #fff;
+    padding: 0.7rem;
+    padding-right: 3rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    width: 300px;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  
+ 
+  .submit6 {
+    border: none;
+    outline: none;
+    background-color: #0a6fd4;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transform: .3s ease;
+  }
+  
+  .submit6:hover {
+    background-color: #0a6fd4;
+  }
+  
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+  
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+
+  .radio-button{
+    padding-left: 15px;
+    
+  }

@@ -1,12 +1,15 @@
-// src/Dashboard.js
+import "../styles/dashbord.css";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { MdAccountCircle } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -39,30 +42,43 @@ const Dashboard = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/');
+  };
+
   if (!user) return <div>Loading...</div>;
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>First Name: {user.firstName}</p>
-      <p>Last Name: {user.lastName}</p>
-      <p>Email: {user.email}</p>
-      <h2>Change Password</h2>
-      <input
-        type="password"
-        placeholder="Current Password"
-        value={currentPassword}
-        onChange={(e) => setCurrentPassword(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="New Password"
-        value={newPassword}
-        onChange={(e) => setNewPassword(e.target.value)}
-      />
-      <button onClick={handlePasswordChange}>Update Password</button>
-      {message && <p>{message}</p>}
-    </div>
+    <>
+      <div className='dashcontainer'>
+        <h1 className="dash-title">Dashboard</h1>
+        <button onClick={handleLogout} className="logout-button">Logout</button>
+        <center>
+          <MdAccountCircle style={{ width: '150px', height: '150px' }} />
+        </center>
+        <p><span>First Name: </span> {user.firstName}</p>
+        <p> <span>Last Name: </span>{user.lastName}</p>
+        <p><span>Email: </span>{user.email}</p>
+      </div>
+      <div className="changepass">
+        <h2 className="change-title">Change Password</h2>
+        <input className="input-container"
+          type="password"
+          placeholder="Current Password"
+          value={currentPassword}
+          onChange={(e) => setCurrentPassword(e.target.value)}
+        />
+        <input className="input-container"
+          type="password"
+          placeholder="New Password"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
+        <button className="submit" onClick={handlePasswordChange}>Update Password</button>
+        {message && <p>{message}</p>}
+      </div>
+    </>
   );
 };
 
