@@ -67,6 +67,17 @@ h1 {
   border-radius: 3px;
 }
 
+.inputsearch {
+  width: 15em;
+  height: 2.2em;
+  padding-left: 0.8em;
+  position: absolute;
+  top: 12px;
+  left: 33%;
+  border: none;
+  background-color: #edf3f8;
+  border-radius: 3px;
+}
 .homei {
   font-size: 28px;
   position: relative;

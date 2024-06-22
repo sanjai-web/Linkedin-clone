@@ -10,7 +10,7 @@ function Navbar() {
   return (
     <div className="Topnav">
       <img src={logo} alt="Company Logo" className='logo' style={{ maxWidth: '35px', maxHeight: '35px' }} />
-      <input className="input1" placeholder="Search" />
+      <input className="inputsearch" placeholder="Search" />
       <div className='icons1'>
         <span className="homei" >
           <NavLink to="/home" >

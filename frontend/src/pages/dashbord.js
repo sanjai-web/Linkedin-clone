@@ -27,6 +27,12 @@ const Dashboard = () => {
   }, []);
 
   const handlePasswordChange = async () => {
+    // Display confirmation dialog
+    const confirmed = window.confirm('Are you sure you want to update your password?');
+    if (!confirmed) {
+      return; // Do nothing if user cancels
+    }
+
     try {
       const token = localStorage.getItem('token');
       const response = await axios.put('http://localhost:3001/user/password', {

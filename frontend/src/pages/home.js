@@ -33,19 +33,21 @@ export default function Home() {
     }
   };
 
-  const fetchCurrentUser = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:3001/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setCurrentUser(response.data);
-    } catch (error) {
-      console.error("Error fetching current user:", error);
-    }
-  };
+  // Update fetchCurrentUser function in home.js
+const fetchCurrentUser = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.get("http://localhost:3001/user", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setCurrentUser(response.data);
+  } catch (error) {
+    console.error("Error fetching current user:", error);
+    alert("Failed to fetch current user");
+  }
+};
 
   const handleCreateOrUpdatePost = async (e) => {
     e.preventDefault();
@@ -157,7 +159,7 @@ export default function Home() {
   return (
     <div className="container" style={{ marginTop: 50 }}>
       <div className="upload">
-        <span style={{ color: "black" }}>
+        <span style={{ color: "#202020" }}>
           {currentUser.firstName} {currentUser.lastName}
         </span>
         <form onSubmit={handleCreateOrUpdatePost}>
@@ -202,9 +204,9 @@ export default function Home() {
               {post.user && (
                 <>
                   <p className="name-title">{`${post.user.firstName} ${post.user.lastName}`}</p>
-                  <br />
+                  {/*   */}
                   <p className="des">{post.description}</p>
-                  <br />
+                  {/* <br /> */}
                   {post.mediaUrl &&
                     (post.mediaUrl.endsWith(".mp4") ? (
                       <video width="320" height="240" controls>
